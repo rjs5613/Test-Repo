@@ -21,14 +21,7 @@ class StudentServiceImpl implements StudentService {
 
 	@Override
 	public Student findById(long id) {
-		// TODO Auto-generated method stub
 		return studentRepository.findById(id);
 	}
 
-	/**
-	 * @return the studentRepository
-	 */
-	public StudentRepository getStudentRepository() {
-		return studentRepository;
-	}
 }

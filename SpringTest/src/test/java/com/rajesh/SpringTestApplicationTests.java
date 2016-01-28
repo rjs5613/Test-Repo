@@ -1,5 +1,6 @@
 package com.rajesh;
 
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +23,7 @@ public class SpringTestApplicationTests {
 
 	@Test
 	public void testStudent() {
-		System.out.println(studentService.findById(1).getName());
+		Assert.assertTrue(studentService.findById(1).getName().equals("Rajesh"));
 	}
 
 }

@@ -32,11 +32,32 @@ configurations {
 	providedRuntime
 }
 
+apply plugin: 'findbugs'
+
+task customFindbugs(type: FindBugs) {
+    ignoreFailures = true
+    effort = "default"
+    reportLevel = "medium"
+    classes = files("$project.buildDir/intermediates/classes")
+
+    source = fileTree('src/main/java/')
+    classpath = files()
+    reports {
+        xml.enabled = false
+        xml.withMessages = true
+        html.enabled = !xml.isEnabled()
+        xml.destination "$project.buildDir/outputs/findbugs/findbugs-output.xml"
+        html.destination "$project.buildDir/outputs/findbugs/findbugs-output.html"
+    }
+}
+
 dependencies {
 	compile('org.springframework.boot:spring-boot:1.3.2.RELEASE')
 	compile('org.springframework.boot:spring-boot-starter-web')
-	compile('mysql:mysql-connector-java:5.1.38')
 	compile('org.springframework.boot:spring-boot-starter-data-jpa:1.3.2.RELEASE')
+	compile('mysql:mysql-connector-java:5.1.38')
+	
+	compile('javax.servlet:jstl:1.2')
 	providedRuntime('org.springframework.boot:spring-boot-starter-tomcat')
 	 testCompile(
             'org.springframework.boot:spring-boot-starter-test',
